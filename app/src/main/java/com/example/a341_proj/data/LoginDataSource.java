@@ -3,7 +3,6 @@ package com.example.a341_proj.data;
 import com.example.a341_proj.data.model.LoggedInUser;
 
 import java.io.IOException;
-//Test commit for Brandon Gaucher
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.
  */
