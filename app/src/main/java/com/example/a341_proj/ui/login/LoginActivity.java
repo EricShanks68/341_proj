@@ -29,6 +29,8 @@ import com.example.a341_proj.ui.login.LoginViewModelFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private String userName;
+    public static final String sendUser = "key1";
     private LoginViewModel loginViewModel;
 
     @Override
@@ -116,6 +118,7 @@ public class LoginActivity extends AppCompatActivity {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
+                userName = usernameEditText.getText().toString();
                 toMain();
 
             }
@@ -134,6 +137,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void toMain(){
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        intent.putExtra(sendUser, userName);
             startActivity(intent);
     }
 }
