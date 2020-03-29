@@ -4,15 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.a341_proj.R;
-import com.example.a341_proj.ui.login.ui.tools.ToolsFragment;
-import com.example.a341_proj.ui.login.ui.tools.ToolsViewModel;
+import com.example.a341_proj.ui.login.ui.logout.LogoutFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.view.View;
 
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -28,12 +26,10 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.widget.TextView;
 
-import com.example.a341_proj.R;
-
 public class MainActivity extends AppCompatActivity {
 
     //fragment idk if this works
-    ToolsFragment fragment = new ToolsFragment();
+    LogoutFragment fragment = new LogoutFragment();
     FragmentManager manager = getSupportFragmentManager();
 
 
@@ -59,15 +55,15 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
+                R.id.nav_home, R.id.nav_groups, R.id.nav_settings,
+                R.id.nav_logout, R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        //recieve username and put it in the nav header
+        //receive username and put it in the nav header
         Intent in = getIntent();
         String username = in.getStringExtra(LoginActivity.sendUser);
         NavigationView navView = (NavigationView) findViewById(R.id.nav_view);

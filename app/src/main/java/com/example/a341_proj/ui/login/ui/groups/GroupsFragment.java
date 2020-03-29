@@ -1,4 +1,4 @@
-package com.example.a341_proj.ui.login.ui.slideshow;
+package com.example.a341_proj.ui.login.ui.groups;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,17 +15,17 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.a341_proj.R;
 
 
-public class SlideshowFragment extends Fragment {
+public class GroupsFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
+    private GroupsViewModel groupsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                ViewModelProviders.of(this).get(SlideshowViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
+        groupsViewModel =
+                ViewModelProviders.of(this).get(GroupsViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_settings, container, false);
         final TextView textView = root.findViewById(R.id.text_slideshow);
-        slideshowViewModel.getText().observe(this, new Observer<String>() {
+        groupsViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
