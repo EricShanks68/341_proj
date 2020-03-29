@@ -1,9 +1,11 @@
 package com.example.a341_proj.ui.login;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.a341_proj.DatePickerFragment;
 import com.example.a341_proj.R;
 import com.example.a341_proj.ui.login.ui.logout.LogoutFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -13,6 +15,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -28,11 +31,15 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import java.text.DateFormat;
+import java.util.Calendar;
+
+public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     //fragment idk if this works
     LogoutFragment fragment = new LogoutFragment();
@@ -43,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout DrawLay;
     Button closePopup;
     Button saveEvent;
+    View customView;
+
+    //date picker button
+    Button datePick;
+    //date picker textview
+    TextView eventDate;
 
 
 
@@ -94,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = layoutInflater.inflate(R.layout.popwindow,null);
+                 customView = layoutInflater.inflate(R.layout.popwindow,null);
                 popupWindow = new PopupWindow(customView, Toolbar.LayoutParams.MATCH_PARENT, Toolbar.LayoutParams.MATCH_PARENT);
                 popupWindow.showAtLocation(DrawLay, Gravity.CENTER, 0, 0);
                 closePopup = (Button) customView.findViewById(R.id.cancelEvent);
@@ -109,6 +122,21 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(getApplicationContext(), "Event saved!", Toast.LENGTH_LONG).show();
+                        popupWindow.dismiss();
+                    }
+                });
+
+                //add event functionality
+
+
+                //date picker button
+                datePick = (Button) customView.findViewById(R.id.pickDate);
+                datePick.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DialogFragment datePicker = new DatePickerFragment();
+                        datePicker.show(getSupportFragmentManager(), "date picker");
+
                     }
                 });
             }
@@ -128,5 +156,17 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        String eventDateString = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+
+        eventDate = (TextView) customView.findViewById(R.id.eventDate);
+        eventDate.setText(eventDateString);
     }
 }

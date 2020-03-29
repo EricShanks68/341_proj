@@ -8,8 +8,53 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0"
-        android:gravity="center|bottom"
-        android:orientation="horizontal">
+        android:gravity="center|center_vertical"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:layout_weight="0"
+            android:gravity="center|center_vertical"
+            android:hint="Title">
+
+        </EditText>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventDate"
+            android:layout_weight="0"
+            android:gravity="center|center_horizontal"
+            android:text="Date"> </TextView>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pickDate"
+            android:layout_weight="0"
+            android:layout_gravity="center|center_horizontal"
+            android:text="Pick Date"></Button>
+      <!--  <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/startTime"
+            android:layout_weight="0"
+            android:layout_gravity="center|center_vertical"
+            android:text="Starting Time"> </Spinner>
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/endTime"
+            android:layout_weight="0"
+            android:layout_gravity="center|center_vertical"
+            android:text="Ending Time"> </Spinner> -->
+
+
+
 
 
     </LinearLayout>
@@ -17,7 +62,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:gravity="center|bottom"
         android:orientation="horizontal">
 
