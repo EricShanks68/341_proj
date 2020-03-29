@@ -1,5 +1,6 @@
 package com.example.a341_proj.ui.login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -8,6 +9,8 @@ import com.example.a341_proj.ui.login.ui.logout.LogoutFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.fragment.app.FragmentManager;
@@ -24,13 +27,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.Button;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     //fragment idk if this works
     LogoutFragment fragment = new LogoutFragment();
     FragmentManager manager = getSupportFragmentManager();
+
+    //popup?
+    PopupWindow popupWindow;
+    DrawerLayout DrawLay;
+    Button closePopup;
+    Button saveEvent;
 
 
 
@@ -70,6 +82,38 @@ public class MainActivity extends AppCompatActivity {
         View headerView = navView.getHeaderView(0);
         TextView navUsername = (TextView) headerView.findViewById(R.id.textViewuserName);
         navUsername.setText(username);
+
+
+        //popup
+        DrawLay = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+//calendar and event attemps
+
+        FloatingActionButton fabevent = findViewById(R.id.fabevent);
+        fabevent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View customView = layoutInflater.inflate(R.layout.popwindow,null);
+                popupWindow = new PopupWindow(customView, Toolbar.LayoutParams.MATCH_PARENT, Toolbar.LayoutParams.MATCH_PARENT);
+                popupWindow.showAtLocation(DrawLay, Gravity.CENTER, 0, 0);
+                closePopup = (Button) customView.findViewById(R.id.cancelEvent);
+                saveEvent = (Button) customView.findViewById(R.id.saveEvent);
+                closePopup.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupWindow.dismiss();
+                    }
+                });
+                saveEvent.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getApplicationContext(), "Event saved!", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
+
     }
 
     @Override
