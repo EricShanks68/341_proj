@@ -1,24 +1,16 @@
 package com.example.a341_proj.ui.login;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.a341_proj.R;
-import com.example.a341_proj.ui.login.ui.MyAdapter;
-import com.example.a341_proj.ui.login.ui.send.SendFragment;
-import com.example.a341_proj.ui.login.ui.tools.ToolsFragment;
-import com.example.a341_proj.ui.login.ui.tools.ToolsViewModel;
+import com.example.a341_proj.ui.login.ui.logout.LogoutFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import android.provider.CalendarContract;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -30,38 +22,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
-import android.widget.Button;
-import android.widget.CalendarView;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.a341_proj.R;
-
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import android.view.ViewGroup.LayoutParams;
 
 public class MainActivity extends AppCompatActivity {
 
-    //popup?
-    PopupWindow popupWindow;
-    DrawerLayout DrawLay;
-    Button closePopup;
-    Button saveEvent;
+    //fragment idk if this works
+    LogoutFragment fragment = new LogoutFragment();
+    FragmentManager manager = getSupportFragmentManager();
 
-    //event recycler array
-    //ArrayList<String> title = new ArrayList<String>();
-        String s1[], s2[];
-        //int images[] = {};
-    // recycler
-    RecyclerView recyclerView;
 
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -76,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -83,53 +55,21 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
+                R.id.nav_home, R.id.nav_groups, R.id.nav_settings,
+                R.id.nav_logout, R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        //recieve username and put it in the nav header
+        //receive username and put it in the nav header
         Intent in = getIntent();
         String username = in.getStringExtra(LoginActivity.sendUser);
         NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navView.getHeaderView(0);
         TextView navUsername = (TextView) headerView.findViewById(R.id.textViewuserName);
         navUsername.setText(username);
-
-
-
-        //popup
-        DrawLay = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-        //calendar and event attemps
-
-        FloatingActionButton fabevent = findViewById(R.id.fabevent);
-        fabevent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = layoutInflater.inflate(R.layout.popwindow,null);
-                popupWindow = new PopupWindow(customView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-                popupWindow.showAtLocation(DrawLay, Gravity.CENTER, 0, 0);
-                closePopup = (Button) customView.findViewById(R.id.cancelEvent);
-                saveEvent = (Button) customView.findViewById(R.id.saveEvent);
-                closePopup.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        popupWindow.dismiss();
-                    }
-                });
-                saveEvent.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(getApplicationContext(), "Event saved!", Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-        });
     }
 
     @Override
@@ -145,5 +85,4 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
 }
