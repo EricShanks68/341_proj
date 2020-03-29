@@ -20,6 +20,7 @@
         android:gravity="center_horizontal" />
 
     <CalendarView
+        android:id="@+id/cal"
         android:layout_width="346dp"
         android:layout_height="354dp"
         android:layout_marginStart="32dp"
@@ -33,6 +34,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_home"
         app:layout_constraintVertical_bias="0.0"></CalendarView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecycleEvents"
+        android:layout_width="409dp"
+        android:layout_height="308dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cal" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
