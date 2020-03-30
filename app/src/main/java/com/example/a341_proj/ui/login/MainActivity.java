@@ -30,9 +30,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.PopupWindow;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,11 +54,17 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     Button closePopup;
     Button saveEvent;
     View customView;
+    EditText eventTitle;
+    String saveEventTitle;
 
     //date picker button
     Button datePick;
     //date picker textview
     TextView eventDate;
+
+    //spinner strings
+    String startSpinner;
+    String endSpinner;
 
 
 
@@ -112,15 +121,40 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 popupWindow.showAtLocation(DrawLay, Gravity.CENTER, 0, 0);
                 closePopup = (Button) customView.findViewById(R.id.cancelEvent);
                 saveEvent = (Button) customView.findViewById(R.id.saveEvent);
+                popupWindow.setFocusable(true);
+                popupWindow.update();
                 closePopup.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         popupWindow.dismiss();
                     }
                 });
+                //edit text title
+                eventTitle = (EditText) customView.findViewById(R.id.title);
+
+                //create spinners
+                //start spinner
+//                final Spinner spinner = (Spinner) customView.findViewById(R.id.startTime);
+//                ArrayAdapter<String> spinnerStartTimeArrayAdapter = new ArrayAdapter<String>(
+//                        MainActivity.this,
+//                        android.R.layout.simple_spinner_dropdown_item,
+//                        getResources().getStringArray(R.array.TimeArray));
+//                spinner.setAdapter(spinnerStartTimeArrayAdapter);
+
+                //start spinner
+//                final Spinner spinner2 = (Spinner) customView.findViewById(R.id.endTime);
+//                ArrayAdapter<String> spinnerEndTimeArrayAdapter = new ArrayAdapter<String>(
+//                        MainActivity.this,
+//                        android.R.layout.simple_spinner_dropdown_item,
+//                        getResources().getStringArray(R.array.TimeArray));
+//                spinner2.setAdapter(spinnerEndTimeArrayAdapter);
+
                 saveEvent.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        saveEventTitle = eventTitle.getText().toString();
+//                        startSpinner = spinner.getSelectedItem().toString();
+//                        endSpinner = spinner2.getSelectedItem().toString();
                         Toast.makeText(getApplicationContext(), "Event saved!", Toast.LENGTH_LONG).show();
                         popupWindow.dismiss();
                     }

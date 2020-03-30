@@ -22,16 +22,32 @@
     <string name="menu_logout">Logout</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
-    
-        <string-array name="prog_lang">
-            <item>heloo</item>
-            <item>there</item>
-            <item>buddd</item>
-        </string-array>
 
-        <string-array name="des">
-            <item>idk</item>
-            <item>idk</item>
-            <item>idk</item>
-        </string-array>
+    <string-array name="TimeArray">
+        <item>1:00 am</item>
+        <item>2:00 am</item>
+        <item>3:00 am</item>
+        <item>4:00 am</item>
+        <item>5:00 am</item>
+        <item>6:00 am</item>
+        <item>7:00 am</item>
+        <item>8:00 am</item>
+        <item>9:00 am</item>
+        <item>10:00 am</item>
+        <item>11:00 am</item>
+        <item>12:00 am</item>
+        <item>1:00 pm</item>
+        <item>2:00 pm</item>
+        <item>3:00 pm</item>
+        <item>4:00 pm</item>
+        <item>5:00 pm</item>
+        <item>6:00 pm</item>
+        <item>7:00 pm</item>
+        <item>8:00 pm</item>
+        <item>9:00 pm</item>
+        <item>10:00 pm</item>
+        <item>11:00 pm</item>
+        <item>12:00 pm</item>
+    </string-array>
+
 </resources>
