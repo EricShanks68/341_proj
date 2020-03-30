@@ -19,11 +19,16 @@ import com.example.a341_proj.R;
 
 public class HomeFragment extends Fragment {
 
+    TextView eventTitle1;
+
     private HomeViewModel homeViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        return root;
+       // homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+       // View root = inflater.inflate(R.layout.fragment_home, container, false);
+      //  String EditTextTitle = getArguments().getString("keyEdit");
+//        eventTitle1 = (TextView) getView().findViewById(R.id.event1Title);
+//        eventTitle1.setText(EditTextTitle);
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 }

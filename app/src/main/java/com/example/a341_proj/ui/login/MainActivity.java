@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.example.a341_proj.DatePickerFragment;
 import com.example.a341_proj.R;
+import com.example.a341_proj.ui.login.ui.home.HomeFragment;
 import com.example.a341_proj.ui.login.ui.logout.LogoutFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -61,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     Button datePick;
     //date picker textview
     TextView eventDate;
+    //String to store date value
+    String eventDateString;
 
     //spinner strings
     String startSpinner;
@@ -134,27 +137,28 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
                 //create spinners
                 //start spinner
-//                final Spinner spinner = (Spinner) customView.findViewById(R.id.startTime);
-//                ArrayAdapter<String> spinnerStartTimeArrayAdapter = new ArrayAdapter<String>(
-//                        MainActivity.this,
-//                        android.R.layout.simple_spinner_dropdown_item,
-//                        getResources().getStringArray(R.array.TimeArray));
-//                spinner.setAdapter(spinnerStartTimeArrayAdapter);
+               final Spinner spinner = (Spinner) customView.findViewById(R.id.startTime);
+                ArrayAdapter<String> spinnerStartTimeArrayAdapter = new ArrayAdapter<String>(
+                        MainActivity.this,
+                        android.R.layout.simple_spinner_dropdown_item,
+                        getResources().getStringArray(R.array.TimeArray));
+                spinner.setAdapter(spinnerStartTimeArrayAdapter);
 
                 //start spinner
-//                final Spinner spinner2 = (Spinner) customView.findViewById(R.id.endTime);
-//                ArrayAdapter<String> spinnerEndTimeArrayAdapter = new ArrayAdapter<String>(
-//                        MainActivity.this,
-//                        android.R.layout.simple_spinner_dropdown_item,
-//                        getResources().getStringArray(R.array.TimeArray));
-//                spinner2.setAdapter(spinnerEndTimeArrayAdapter);
+           final Spinner spinner2 = (Spinner) customView.findViewById(R.id.endTime);
+                ArrayAdapter<String> spinnerEndTimeArrayAdapter = new ArrayAdapter<String>(
+                        MainActivity.this,
+                        android.R.layout.simple_spinner_dropdown_item,
+                        getResources().getStringArray(R.array.TimeArray));
+                spinner2.setAdapter(spinnerEndTimeArrayAdapter);
 
                 saveEvent.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         saveEventTitle = eventTitle.getText().toString();
-//                        startSpinner = spinner.getSelectedItem().toString();
-//                        endSpinner = spinner2.getSelectedItem().toString();
+                        startSpinner = spinner.getSelectedItem().toString();
+                        endSpinner = spinner2.getSelectedItem().toString();
+                        eventDateString = eventDate.getText().toString();
                         Toast.makeText(getApplicationContext(), "Event saved!", Toast.LENGTH_LONG).show();
                         popupWindow.dismiss();
                     }
@@ -202,5 +206,14 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         eventDate = (TextView) customView.findViewById(R.id.eventDate);
         eventDate.setText(eventDateString);
+    }
+
+    //send data to HomeFragment?
+    public void sendToFrag(){
+        Bundle bundle = new Bundle();
+        bundle.putString("keyEdit", saveEventTitle);
+// set Fragmentclass Arguments
+        HomeFragment fragHome = new HomeFragment();
+        fragHome.setArguments(bundle);
     }
 }
