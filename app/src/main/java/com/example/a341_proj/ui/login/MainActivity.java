@@ -18,6 +18,7 @@ import android.view.View;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -48,6 +49,11 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     //fragment idk if this works
     LogoutFragment fragment = new LogoutFragment();
     FragmentManager manager = getSupportFragmentManager();
+
+    //idk try
+    FragmentManager fragmentManager = getSupportFragmentManager();
+    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
 
     //popup?
     PopupWindow popupWindow;
@@ -159,6 +165,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         startSpinner = spinner.getSelectedItem().toString();
                         endSpinner = spinner2.getSelectedItem().toString();
                         eventDateString = eventDate.getText().toString();
+                        HomeFragment fragHome = HomeFragment.newInstance(saveEventTitle,startSpinner, endSpinner, eventDateString );
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home, fragHome).commit();
                         Toast.makeText(getApplicationContext(), "Event saved!", Toast.LENGTH_LONG).show();
                         popupWindow.dismiss();
                     }
@@ -209,11 +217,14 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     }
 
     //send data to HomeFragment?
-    public void sendToFrag(){
-        Bundle bundle = new Bundle();
-        bundle.putString("keyEdit", saveEventTitle);
-// set Fragmentclass Arguments
-        HomeFragment fragHome = new HomeFragment();
-        fragHome.setArguments(bundle);
+//    public void sendToFrag(){
+//        HomeFragment fragHome = HomeFragment.newInstance(saveEventTitle);
+////        Bundle bundle = new Bundle();
+////        bundle.putString("saveEventTitle", saveEventTitle);
+////        fragHome.setArguments(bundle);
+//// set Fragmentclass Arguments
+////       HomeFragment fragHome = new HomeFragment();
+//     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragHome).commit();
+////        fragHome.setArguments(bundle);
     }
-}
+
