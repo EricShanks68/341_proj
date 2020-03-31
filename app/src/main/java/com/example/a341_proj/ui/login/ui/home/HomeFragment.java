@@ -22,10 +22,11 @@ public class HomeFragment extends Fragment {
     private static final String TITLE_TEXT = "titleText";
     private static final String SPIN_1 = "spin1text";
     private static final String SPIN_2 = "spin2text";
-    private static final String DATE = "spin2text";
+    private static final String DATE = "datetext";
 
     private String EditTextTitle;
     private String EventTime;
+    private String EventTime2;
     private String Date;
 
     //private HomeViewModel homeViewModel;
@@ -49,12 +50,13 @@ public class HomeFragment extends Fragment {
         TextView date = (TextView) root.findViewById(R.id.event1Desc);
        if (getArguments() != null){
            EditTextTitle = getArguments().getString(TITLE_TEXT);
-           EventTime = getArguments().getString(SPIN_1 + "-" + SPIN_2);
+           EventTime = getArguments().getString(SPIN_1);
+           EventTime2 = getArguments().getString(SPIN_2);
            Date = getArguments().getString(DATE);
        }
        
         eventTitle1.setText(EditTextTitle);
-       eventTime.setText(EventTime);
+       eventTime.setText(EventTime + EventTime2);
         date.setText(Date);
         return root;
 //        return inflater.inflate(R.layout.fragment_home, container, false);
