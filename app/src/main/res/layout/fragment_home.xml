@@ -15,128 +15,23 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/nestedScrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></CalendarView>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollView"
-        android:layout_width="0dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/eventList"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="2dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="200dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/event1Title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Event #1"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/event1Time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="6:00PM - 8:00PM" />
-
-                    <TextView
-                        android:id="@+id/event1Desc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Enter the event description here" />
-
-                </LinearLayout>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="200dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/event2Title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Event #2"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/event2Time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="3:00PM - 4:00PM" />
-
-                    <TextView
-                        android:id="@+id/event2Desc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Enter the event description here" />
-
-                </LinearLayout>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="200dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/event3Title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Event #3"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/event3Time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="11:00AM - 9:00PM" />
-
-                    <TextView
-                        android:id="@+id/event3Desc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Enter the event description here" />
-
-                </LinearLayout>
-            </TableRow>
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

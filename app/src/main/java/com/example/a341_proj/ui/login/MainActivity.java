@@ -7,6 +7,10 @@ import android.os.Bundle;
 
 import com.example.a341_proj.DatePickerFragment;
 import com.example.a341_proj.R;
+import com.example.a341_proj.ui.login.ui.groups.MessageAdapter;
+import com.example.a341_proj.ui.login.ui.groups.MessagingActivity;
+import com.example.a341_proj.ui.login.ui.home.Event;
+import com.example.a341_proj.ui.login.ui.home.EventAdapter;
 import com.example.a341_proj.ui.login.ui.home.HomeFragment;
 import com.example.a341_proj.ui.login.ui.logout.LogoutFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -30,6 +34,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.widget.ArrayAdapter;
@@ -42,6 +48,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
@@ -52,7 +59,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     //idk try
     FragmentManager fragmentManager = getSupportFragmentManager();
-    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
 
     //popup?
@@ -74,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     //spinner strings
     String startSpinner;
     String endSpinner;
+
 
 
 
@@ -105,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         View headerView = navView.getHeaderView(0);
         TextView navUsername = (TextView) headerView.findViewById(R.id.textViewuserName);
         navUsername.setText(username);
+        MessagingActivity.username = username;
 
 
         //popup
@@ -157,8 +165,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         startSpinner = spinner.getSelectedItem().toString();
                         endSpinner = spinner2.getSelectedItem().toString();
                         eventDateString = eventDate.getText().toString();
-                        HomeFragment fragHome = HomeFragment.newInstance(saveEventTitle,startSpinner, endSpinner, eventDateString );
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home, fragHome).commit();
+                        HomeFragment.events.add(new Event(saveEventTitle, eventDateString, startSpinner + " - " + endSpinner));
                         Toast.makeText(getApplicationContext(), "Event saved!", Toast.LENGTH_LONG).show();
                         popupWindow.dismiss();
                     }
